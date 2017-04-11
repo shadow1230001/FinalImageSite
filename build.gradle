@@ -33,7 +33,6 @@ dependencies {
 	compile('org.hibernate:hibernate-core:5.2.9.Final')
 	compile('org.projectlombok:lombok:1.16.16')
 	runtime('mysql:mysql-connector-java')
-	compile group: 'org.apache.logging.log4j', name: 'log4j-1.2-api', version: '2.5'
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 }
 task wrapper(type: Wrapper) {
