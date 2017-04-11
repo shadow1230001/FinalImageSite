@@ -1,6 +1,9 @@
 package com.itransition.lyubin.model;
 
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.Column;
@@ -10,7 +13,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-
+@Getter
+@Setter
+@NoArgsConstructor
 @Entity
 @Table(name = "sex")
 @ToString
@@ -27,23 +32,8 @@ public class Sex {
     public Sex(String name) {
         this.name = name;
     }
-    public Sex(){
 
-    }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 }
+
+
