@@ -21,7 +21,6 @@ public class SexDTO {
 
         Sex sex = new Sex();
 
-        System.out.print(this.name);
         sex.setName(this.name);
         return sex;
     }

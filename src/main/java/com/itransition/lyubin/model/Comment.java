@@ -41,9 +41,4 @@ public class Comment {
     @Column(name = "text")
     private String text;
 
-    public Comment(Image imege, Integer position, String text) {
-        this.image = image;
-        this.position = position;
-        this.text = text;
-    }
 }

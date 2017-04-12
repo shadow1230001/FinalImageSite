@@ -5,7 +5,16 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 
 @Entity
@@ -31,9 +40,4 @@ public class Image {
     @Column(name = "url")
     private String url;
 
-    public Image(User user, Integer position, String url) {
-        this.user = user;
-        this.position = position;
-        this.url = url;
-    }
 }

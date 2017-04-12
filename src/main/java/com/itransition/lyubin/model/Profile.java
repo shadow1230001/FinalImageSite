@@ -39,10 +39,4 @@ public class Profile {
 
     @Column(name = "col_like")
     private Integer colLike;
-
-    public Profile(User user, Double rating, Integer colLike) {
-        this.user = user;
-        this.rating = rating;
-        this.colLike = colLike;
-    }
 }
