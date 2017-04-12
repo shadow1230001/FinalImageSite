@@ -15,9 +15,6 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import javax.sql.DataSource;
 import java.util.Properties;
 
-/**
- * Created by User on 11.04.2017.
- */
 @Configuration
 @EnableTransactionManagement
 public class DatebaseConfig {
@@ -59,11 +56,6 @@ public class DatebaseConfig {
      * DataAccessException).
      */
 
-    @Bean
-    public PersistenceExceptionTranslationPostProcessor exceptionTranslation() {
-        return new PersistenceExceptionTranslationPostProcessor();
-    }
-
     // Private fields
 
     @Autowired
@@ -71,9 +63,6 @@ public class DatebaseConfig {
 
     @Autowired
     private DataSource dataSource;
-
-    @Autowired
-    private LocalContainerEntityManagerFactoryBean entityManagerFactory;
 
     @Bean
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
@@ -110,7 +99,7 @@ public class DatebaseConfig {
      * Declare the transaction manager.
      */
     @Bean
-    public JpaTransactionManager transactionManager() {
+    public JpaTransactionManager transactionManager(LocalContainerEntityManagerFactoryBean entityManagerFactory) {
         JpaTransactionManager transactionManager =
                 new JpaTransactionManager();
         transactionManager.setEntityManagerFactory(

@@ -22,7 +22,7 @@ public class SexController {
     private SexRepository sexRepository;
 
     @Autowired
-    private SexService sexService
+    private SexService sexService;
 
     @GetMapping(value = "/getall")
     public ResponseEntity<?> findAll() {
