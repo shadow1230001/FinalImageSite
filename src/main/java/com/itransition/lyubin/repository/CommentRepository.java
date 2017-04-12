@@ -12,4 +12,6 @@ import java.util.List;
 public interface CommentRepository extends JpaRepository<Comment, Integer> {
 
     List<Comment> findByImage(Image image);
+
+    List<Comment> findAllByImageId(Integer id);
 }
