@@ -26,7 +26,7 @@ public class TagController {
 
     @GetMapping(value = "/images/{id}")
     public ResponseEntity<?> getTagsByImageId(@PathVariable Integer id) {
-        return ResponseEntity.ok("tags");
+        return ResponseEntity.ok(this.tagService.findByImageId(id));
     }
 
 }

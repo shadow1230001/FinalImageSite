@@ -10,6 +10,7 @@ import java.util.List;
 public interface TagService {
     List<Tag> findAll();
     Tag findById(Integer id);
+    List<Tag> findByImageId(Integer id);
     void save(Tag tag);
     void delete(Integer id);
 }

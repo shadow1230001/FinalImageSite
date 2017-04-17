@@ -1,13 +1,10 @@
 package com.itransition.lyubin.controller;
 
+import com.itransition.lyubin.dto.ProfileDTO;
 import com.itransition.lyubin.service.ProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(value = "/profiles")
@@ -20,14 +17,24 @@ public class ProfileController {
         this.profileService = profileService;
     }
 
-    @GetMapping(value = "/users/{id}")
+    @PostMapping(value = "create")
+    public ResponseEntity<?> create(@RequestBody ProfileDTO profileDTO) {
+        return ResponseEntity.ok(this.profileService.save(profileDTO));
+    }
+
+    @GetMapping(value = "get/{id}")
+    public ResponseEntity<?> getProfileById(@PathVariable Integer id) {
+        return ResponseEntity.ok(this.profileService.findById(id));
+    }
+
+    @GetMapping(value = "get/user/{id}")
     public ResponseEntity<?> getProfileByUserId(@PathVariable Integer id) {
         return ResponseEntity.ok(this.profileService.findByUserId(id));
     }
 
-    @GetMapping(value = "/rating")
-    public ResponseEntity<?> getRatingById(@RequestParam int id) {
-        return ResponseEntity.ok("rating");
+    @GetMapping(value = "/rating/{id}")
+    public ResponseEntity<?> getRatingById(@PathVariable int id) {
+        return ResponseEntity.ok(this.profileService.findByUserId(id).getRating());
     }
 
 }

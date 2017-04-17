@@ -34,7 +34,7 @@ public class SexController {
     @PostMapping(value = "/save")
     public ResponseEntity<String> save(@RequestBody SexDTO sexDTO) {
         sexService.save(toSex(sexDTO));
-        return new ResponseEntity("good", HttpStatus.CREATED);
+        return new ResponseEntity<String>("good", HttpStatus.CREATED);
     }
 
     @PostMapping(value = "/delete")
@@ -43,9 +43,9 @@ public class SexController {
         return ResponseEntity.ok("ok");
     }
 
-    public Sex toSex(SexDTO sexDTO) {
+    private Sex toSex(SexDTO sexDTO) {
         Sex sex = new Sex();
-        sex.setName(sexDTO.getName().get());
+        sex.setName(sexDTO.getName());
         return sex;
     }
 }
