@@ -1,5 +1,6 @@
 package com.itransition.lyubin.service.impl;
 
+
 import com.itransition.lyubin.dto.ProfileDTO;
 import com.itransition.lyubin.model.Profile;
 import com.itransition.lyubin.repository.ProfileRepository;
@@ -9,11 +10,9 @@ import com.itransition.lyubin.repository.UserRepository;
 import com.itransition.lyubin.service.ProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
-/**
- * Created by User on 12.04.2017.
- */
+import javax.transaction.Transactional;
+
 @Service
 @Transactional
 public class ProfileServiceImpl implements ProfileService {

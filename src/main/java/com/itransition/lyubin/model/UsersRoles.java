@@ -7,9 +7,7 @@ import lombok.ToString;
 
 import javax.persistence.*;
 
-/**
- * Created by User on 17.04.2017.
- */
+
 @Entity
 @Table(name = "users_roles")
 @Getter
@@ -35,3 +33,4 @@ public class UsersRoles {
         this.role = role;
     }
 }
+

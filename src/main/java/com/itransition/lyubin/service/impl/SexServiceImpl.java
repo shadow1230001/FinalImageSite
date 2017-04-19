@@ -1,5 +1,6 @@
 package com.itransition.lyubin.service.impl;
 
+
 import com.itransition.lyubin.model.Sex;
 import com.itransition.lyubin.repository.SexRepository;
 import com.itransition.lyubin.service.SexService;
@@ -8,9 +9,6 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 
-/**
- * Created by User on 12.04.2017.
- */
 @Service
 @Transactional
 public class SexServiceImpl implements SexService {

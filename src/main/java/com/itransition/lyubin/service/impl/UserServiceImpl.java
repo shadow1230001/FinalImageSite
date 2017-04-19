@@ -1,9 +1,10 @@
 package com.itransition.lyubin.service.impl;
 
+
 import com.itransition.lyubin.dto.UserDTO;
 import com.itransition.lyubin.model.User;
 import com.itransition.lyubin.model.UsersRoles;
-import com.itransition.lyubin.repository.RoleRepository;
+import com.itransition.lyubin.repository.RoleRepositiry;
 import com.itransition.lyubin.repository.UserRepository;
 import com.itransition.lyubin.repository.UsersRolesRepository;
 import com.itransition.lyubin.service.UserService;
@@ -12,19 +13,16 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 
-/**
- * Created by User on 12.04.2017.
- */
 @Service
 @Transactional
 public class UserServiceImpl implements UserService {
 
     private UserRepository userRepository;
     private UsersRolesRepository usersRolesRepository;
-    private RoleRepository roleRepository;
+    private RoleRepositiry roleRepository;
 
     @Autowired
-    public UserServiceImpl(UserRepository userRepository, UsersRolesRepository usersRolesRepository, RoleRepository roleRepository){
+    public UserServiceImpl(UserRepository userRepository, UsersRolesRepository usersRolesRepository, RoleRepositiry roleRepository){
         this.userRepository = userRepository;
         this.usersRolesRepository = usersRolesRepository;
         this.roleRepository = roleRepository;

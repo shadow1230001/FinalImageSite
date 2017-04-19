@@ -1,28 +1,18 @@
 package com.itransition.lyubin.dto;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.itransition.lyubin.model.Sex;
 
-import java.util.Optional;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-
+@Getter
+@Setter
+@NoArgsConstructor
 public class SexDTO {
-    private final String name;
+    private int id;
+    private String name;
 
-    public SexDTO(@JsonProperty("name") String name) {
+    public SexDTO(String name) {
         this.name = name;
     }
-
-    public Optional<String> getName() {
-        return Optional.ofNullable(name);
-    }
-
-    public Sex toSex() {
-
-        Sex sex = new Sex();
-
-        sex.setName(this.name);
-        return sex;
-    }
-
 }

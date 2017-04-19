@@ -6,7 +6,6 @@ import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
-import java.util.Set;
 
 
 @Entity
@@ -24,12 +23,5 @@ public class Role {
 
     @Column(name = "rolename")
     private String rolename;
-
-    @OneToMany
-    @JoinTable(name = "users_roles",
-            joinColumns = {@JoinColumn(name = "id_role", referencedColumnName = "id")},
-            inverseJoinColumns = {@JoinColumn(name = "id_user", referencedColumnName = "id")}
-    )
-    private Set<User> userRoles;
 
 }

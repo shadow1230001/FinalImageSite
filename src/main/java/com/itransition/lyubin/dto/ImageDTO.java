@@ -14,7 +14,7 @@ import lombok.Setter;
 @NoArgsConstructor
 public class ImageDTO {
 
-    private Integer idImage;
+    private Integer idProfile;
 
     private Integer position;
 
@@ -23,7 +23,7 @@ public class ImageDTO {
     public ImageDTO(@JsonProperty("idImage") Integer idImage,
                     @JsonProperty("position") Integer position,
                     @JsonProperty("url") String url) {
-        this.idImage = idImage;
+        this.idProfile = idProfile;
         this.position = position;
         this.url = url;
     }
