@@ -12,7 +12,7 @@ public interface ImagesTagsRepository extends JpaRepository<ImagesTags,Integer> 
 
     /**
      * @param id of image
-     * @return list of tags
+     * @return list of tags 
      */
     @Query("SELECT it.tag FROM ImagesTags it WHERE it.image.id = :id")
     List<Tag> findAllByImageId(Integer id);

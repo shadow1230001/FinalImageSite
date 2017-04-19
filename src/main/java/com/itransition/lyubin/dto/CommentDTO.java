@@ -1,14 +1,12 @@
 package com.itransition.lyubin.dto;
 
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.itransition.lyubin.model.Comment;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-/**
- * Created by User on 17.04.2017.
- */
 @Getter
 @Setter
 @NoArgsConstructor

@@ -1,5 +1,6 @@
 package com.itransition.lyubin.service.impl;
 
+
 import com.itransition.lyubin.dto.CommentDTO;
 import com.itransition.lyubin.model.Comment;
 import com.itransition.lyubin.repository.CommentRepository;
@@ -11,9 +12,6 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.util.List;
 
-/**
- * Created by User on 12.04.2017.
- */
 @Service
 @Transactional
 public class CommentServiceImpl implements CommentService {

@@ -1,5 +1,6 @@
 package com.itransition.lyubin.controller;
 
+
 import com.itransition.lyubin.dto.CommentDTO;
 import com.itransition.lyubin.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,6 @@ public class CommentController {
         this.commentService = commentService;
     }
 
-    @GetMapping(value = "/images/{id}")
     public ResponseEntity<?> getCommentsByImageId(@PathVariable Integer id) {
         return ResponseEntity.ok(this.commentService.findAllByImageId(id));
     }

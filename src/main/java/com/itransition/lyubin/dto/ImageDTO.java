@@ -1,14 +1,12 @@
 package com.itransition.lyubin.dto;
 
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.itransition.lyubin.model.Image;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-/**
- * Created by User on 17.04.2017.
- */
 @Getter
 @Setter
 @NoArgsConstructor
@@ -20,7 +18,7 @@ public class ImageDTO {
 
     private String url;
 
-    public ImageDTO(@JsonProperty("idImage") Integer idImage,
+    public ImageDTO(@JsonProperty("idProfile") Integer idUser,
                     @JsonProperty("position") Integer position,
                     @JsonProperty("url") String url) {
         this.idProfile = idProfile;
