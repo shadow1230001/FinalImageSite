@@ -1,73 +1,36 @@
 package com.itransition.lyubin.controller;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+
+import org.springframework.social.connect.ConnectionRepository;
 import org.springframework.social.facebook.api.Facebook;
-import org.springframework.social.facebook.api.impl.FacebookTemplate;
-import org.springframework.social.facebook.connect.FacebookConnectionFactory;
-import org.springframework.social.oauth2.OAuth2Operations;
+import org.springframework.social.facebook.api.PagedList;
+import org.springframework.social.facebook.api.Post;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
-import javax.swing.*;
-
-/**
- * Created by User on 20.04.2017.
- */
+@Controller
+@RequestMapping("/")
 public class FacebookController {
-    public static void main(String[] args) {
-        String appId = promptForInput("Enter your App ID:");
-        String appSecret = promptForInput("Enter your App Secret:");
-        String appToken = fetchApplicationAccessToken(appId, appSecret);
-        AppDetails appDetails = fetchApplicationData(appId, appToken);
-        System.out.println("\n   APPLICATION DETAILS");
-        System.out.println("=========================");
-        System.out.println("ID:             " + appDetails.getId());
-        System.out.println("Name:           " + appDetails.getName());
-        System.out.println("Namespace:      " + appDetails.getNamespace());
-        System.out.println("Contact Email:  " + appDetails.getContactEmail());
-        System.out.println("Website URL:    " + appDetails.getWebsiteUrl());
+    private Facebook facebook;
+    private ConnectionRepository connectionRepository;
+
+    public FacebookController(Facebook facebook, ConnectionRepository connectionRepository) {
+        this.facebook = facebook;
+        this.connectionRepository = connectionRepository;
     }
 
-    private static AppDetails fetchApplicationData(String appId, String appToken) {
-        Facebook facebook = new FacebookTemplate(appToken);
-        return facebook.restOperations().getForObject("https://graph.facebook.com/{appId}?fields=name,namespace,contact_email,website_url", AppDetails.class, appId);
-    }
-
-    private static String fetchApplicationAccessToken(String appId, String appSecret) {
-        OAuth2Operations oauth = new FacebookConnectionFactory(appId, appSecret).getOAuthOperations();
-        return oauth.authenticateClient().getAccessToken();
-    }
-
-    private static String promptForInput(String promptText) {
-        return JOptionPane.showInputDialog(promptText + " ");
-    }
-
-    private static final class AppDetails {
-        private long id;
-
-        private String name;
-
-        private String namespace;
-
-        @JsonProperty("contact_email")
-        private String contactEmail;
-
-        @JsonProperty("website_url")
-        private String websiteUrl;
-
-        public long getId() {
-            return id;
+    @GetMapping
+    public String helloFacebook(Model model) {
+        if (connectionRepository.findPrimaryConnection(Facebook.class) == null) {
+            return "redirect:/connect/facebook";
         }
-        public String getName() {
-            return name;
-        }
-        public String getNamespace() {
-            return namespace;
-        }
-        public String getContactEmail() {
-            return contactEmail;
-        }
-        public String getWebsiteUrl() {
-            return websiteUrl;
-        }
+
+        model.addAttribute("facebookProfile", facebook.userOperations().getUserProfile());
+        PagedList<Post> feed = facebook.feedOperations().getFeed();
+        model.addAttribute("feed", feed);
+        return "hello";
     }
 
 }
