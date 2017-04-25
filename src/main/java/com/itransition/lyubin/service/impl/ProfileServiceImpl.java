@@ -23,7 +23,7 @@ public class ProfileServiceImpl implements ProfileService {
 
     @Autowired
     public ProfileServiceImpl(ProfileRepository profileRepository, UserRepository userRepository,
-                              SexRepository sexRepository, TypeOfPhotographyRepository typeOfPhotographyRepository){
+                              SexRepository sexRepository, TypeOfPhotographyRepository typeOfPhotographyRepository) {
         this.profileRepository = profileRepository;
         this.userRepository = userRepository;
         this.sexRepository = sexRepository;

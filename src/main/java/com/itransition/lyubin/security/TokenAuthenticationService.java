@@ -21,7 +21,7 @@ public class TokenAuthenticationService {
     }
 
     public void addJwtTokenToHeader(HttpServletResponse response,
-                             UserAuthentication authentication) {
+                                    UserAuthentication authentication) {
         final UserDetails user = authentication.getDetails();
         response.addHeader(AUTH_HEADER_NAME, jwtTokenHandler.createTokenForUser(user));
     }

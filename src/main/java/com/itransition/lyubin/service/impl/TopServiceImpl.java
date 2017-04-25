@@ -20,17 +20,17 @@ public class TopServiceImpl implements TopService {
     private ImageRepository imageRepository;
 
     @Autowired
-    public TopServiceImpl(ProfileRepository profileRepository, ImageRepository imageRepository){
+    public TopServiceImpl(ProfileRepository profileRepository, ImageRepository imageRepository) {
         this.profileRepository = profileRepository;
         this.imageRepository = imageRepository;
     }
 
     @Override
-    public ArrayList<Top> findTop(Integer col){
+    public ArrayList<Top> findTop(Integer col) {
         ArrayList<Top> list = new ArrayList<>();
-        list.add(new Top("1",0,"url1"));
-        list.add(new Top("2",0,"url2"));
-        list.add(new Top("3",0,"url3"));
+        list.add(new Top("1", 0, "url1"));
+        list.add(new Top("2", 0, "url2"));
+        list.add(new Top("3", 0, "url3"));
         return list;
     }
 }

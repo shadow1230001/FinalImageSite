@@ -9,9 +9,14 @@ import java.util.Optional;
 
 public interface UserService extends UserDetailsService {
     Iterable<User> findAll();
+
     User findById(Integer id);
+
     Optional<User> findUser(Integer id);
+
     User save(User user);
+
     void delete(Integer id);
+
     User createUser(UserDTO userDTO);
 }

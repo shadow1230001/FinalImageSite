@@ -30,8 +30,6 @@ configurations {
 dependencies {
 	compile group: 'org.springframework.social', name: 'spring-social-twitter', version: '1.1.1.RELEASE'
 	compile("org.springframework.social:spring-social-facebook:1.1.0.RELEASE")
-	compile group: 'org.springframework.data', name: 'spring-data-solr', version: '2.1.1.RELEASE'
-
 	compile group: 'org.springframework.security', name: 'spring-security-core', version: '3.1.0.RELEASE'
 	compile('org.springframework.boot:spring-boot-starter-data-jpa')
 	compile("org.springframework.boot:spring-boot-starter-web")

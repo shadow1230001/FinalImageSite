@@ -25,8 +25,8 @@ public class StatelessLoginFilter extends AbstractAuthenticationProcessingFilter
     private final TokenAuthenticationService tokenAuthenticationService;
     private final UserService userService;
 
-    public StatelessLoginFilter(String urlMapping,TokenAuthenticationService tokenAuthenticationService,
-                         UserService userService, AuthenticationManager authenticationManager) {
+    public StatelessLoginFilter(String urlMapping, TokenAuthenticationService tokenAuthenticationService,
+                                UserService userService, AuthenticationManager authenticationManager) {
         super(urlMapping);
         this.tokenAuthenticationService = tokenAuthenticationService;
         this.userService = userService;

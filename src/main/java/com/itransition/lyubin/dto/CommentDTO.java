@@ -20,13 +20,13 @@ public class CommentDTO {
 
     public CommentDTO(@JsonProperty("imageId") Integer imageId,
                       @JsonProperty("position") Integer position,
-                      @JsonProperty("text") String text){
+                      @JsonProperty("text") String text) {
         this.imageId = imageId;
         this.position = position;
         this.text = text;
     }
 
-    public Comment toCommentWithoutImage(){
+    public Comment toCommentWithoutImage() {
         Comment comment = new Comment();
         comment.setPosition(this.position);
         comment.setText(text);

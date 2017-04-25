@@ -20,7 +20,7 @@ public class CommentServiceImpl implements CommentService {
     private ImageRepository imageRepository;
 
     @Autowired
-    public CommentServiceImpl(CommentRepository commentRepository, ImageRepository imageRepository){
+    public CommentServiceImpl(CommentRepository commentRepository, ImageRepository imageRepository) {
         this.commentRepository = commentRepository;
         this.imageRepository = imageRepository;
     }

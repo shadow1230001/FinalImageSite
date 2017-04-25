@@ -1,6 +1,6 @@
 package com.itransition.lyubin.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.social.connect.ConnectionRepository;
 import org.springframework.social.twitter.api.CursoredList;
 import org.springframework.social.twitter.api.Twitter;
@@ -25,7 +25,7 @@ public class TwitterController {
         this.connectionRepository = connectionRepository;
     }
 
-    @RequestMapping(method= RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET)
     public String helloTwitter(Model model) {
         if (connectionRepository.findPrimaryConnection(Twitter.class) == null) {
             return "redirect:/connect/twitter";

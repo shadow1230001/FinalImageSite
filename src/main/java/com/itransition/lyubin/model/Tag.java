@@ -23,7 +23,7 @@ public class Tag {
     @Column(name = "text")
     private String text;
 
-    public Tag(String text){
+    public Tag(String text) {
         this.text = text;
     }
 

@@ -43,7 +43,7 @@ public class UserController {
     @PostMapping(value = "singup")
     public ResponseEntity singup(@RequestBody PersonContext personContext) {
         String res = "";
-        if(this.authService.singup(personContext.getUserDTO(),
+        if (this.authService.singup(personContext.getUserDTO(),
                 personContext.getProfileDTO(), personContext.getImageDTO())) {
             res = this.jwtTokenHandler.createTokenForUser(personContext.getUserDTO().toUser());
         }
@@ -54,7 +54,7 @@ public class UserController {
     @PostMapping(value = "login")
     public ResponseEntity login(@Valid @RequestBody UserDTO userDTO) {
         String res = "";
-        if (this.authService.login(userDTO)){
+        if (this.authService.login(userDTO)) {
             res = this.jwtTokenHandler.createTokenForUser(userDTO.toUser());
         }
         return new ResponseEntity(res, HttpStatus.OK);

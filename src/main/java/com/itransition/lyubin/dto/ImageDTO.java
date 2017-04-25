@@ -26,14 +26,14 @@ public class ImageDTO {
         this.url = url;
     }
 
-    public Image toImageWithoutProfile(){
+    public Image toImageWithoutProfile() {
         Image image = new Image();
         image.setPosition(this.position);
         image.setUrl(this.url);
         return image;
     }
 
-    public Image toImageWithUrl(){
+    public Image toImageWithUrl() {
         Image image = new Image();
         image.setUrl(this.url);
         return image;

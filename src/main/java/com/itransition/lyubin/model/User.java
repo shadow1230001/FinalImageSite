@@ -55,7 +55,7 @@ public class User implements UserDetails {
     public Collection<? extends GrantedAuthority> getAuthorities() {
         Collection<GrantedAuthority> authorities = new ArrayList<>();
         Role userRoles = this.getRole();
-        if(userRoles != null) {
+        if (userRoles != null) {
             SimpleGrantedAuthority authority = new SimpleGrantedAuthority(userRoles.getRolename());
             authorities.add(authority);
         }
@@ -65,8 +65,8 @@ public class User implements UserDetails {
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JsonIgnore
     @JoinTable(name = "users_roles",
-            joinColumns        = {@JoinColumn(name = "id_user", referencedColumnName = "id")},
-            inverseJoinColumns = {@JoinColumn(name = "id_role",  referencedColumnName = "id")}
+            joinColumns = {@JoinColumn(name = "id_user", referencedColumnName = "id")},
+            inverseJoinColumns = {@JoinColumn(name = "id_role", referencedColumnName = "id")}
     )
     private Role role;
 

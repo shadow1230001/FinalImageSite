@@ -16,7 +16,7 @@ public class Top {
 
     private String url;
 
-    public Top(String name, Integer rating, String url){
+    public Top(String name, Integer rating, String url) {
         this.name = name;
         this.rating = rating;
         this.url = url;

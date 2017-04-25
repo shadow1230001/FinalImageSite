@@ -49,7 +49,7 @@ public final class UserDTO {
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return this.login + " " + this.password;
     }
 }

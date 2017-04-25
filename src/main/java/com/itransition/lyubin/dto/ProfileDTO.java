@@ -50,7 +50,7 @@ public class ProfileDTO {
         this.colLike = colLike;
     }
 
-    public Profile toProfileWithoutUserSexTypeOfPhotography(){
+    public Profile toProfileWithoutUserSexTypeOfPhotography() {
         Profile profile = new Profile();
         profile.setName(this.name);
         profile.setYearOfBirth(this.yearOfBirth);

@@ -19,7 +19,7 @@ public class TypeOfPhotoController {
 
     @GetMapping(value = "getAll")
     public ResponseEntity<?> findAll() {
-    return ResponseEntity.ok(typeOfPhotoService.findAll());
-  }
+        return ResponseEntity.ok(typeOfPhotoService.findAll());
+    }
 
 }

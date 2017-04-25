@@ -18,16 +18,16 @@ public class TagDTO {
     private String text;
 
     public TagDTO(@JsonProperty("idImage") Integer idImage,
-                  @JsonProperty("text") String text){
+                  @JsonProperty("text") String text) {
         this.idImage = idImage;
         this.text = text;
     }
 
-    public Tag toTag(){
+    public Tag toTag() {
         return new Tag(this.text);
     }
 
-    public ImagesTags getVoidImagesTags(){
+    public ImagesTags getVoidImagesTags() {
         ImagesTags imagesTags = new ImagesTags();
         return imagesTags;
     }

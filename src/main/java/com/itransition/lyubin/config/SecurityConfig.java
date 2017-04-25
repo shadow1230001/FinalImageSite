@@ -19,8 +19,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 
-
-
 @Configuration
 @EnableWebSecurity
 @Order(1)
@@ -45,9 +43,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.headers().frameOptions().disable();
 
         http.exceptionHandling()
-            .and().anonymous()
-            .and().servletApi()
-            .and().headers().cacheControl();
+                .and().anonymous()
+                .and().servletApi()
+                .and().headers().cacheControl();
 
         http.authorizeRequests()
                 .antMatchers(HttpMethod.GET, "/api/posts/**").permitAll()
