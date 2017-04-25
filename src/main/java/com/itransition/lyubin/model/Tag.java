@@ -7,7 +7,6 @@ import lombok.ToString;
 
 import javax.persistence.*;
 
-
 @Entity
 @Table(name = "tags")
 @Getter
@@ -24,5 +23,8 @@ public class Tag {
     @Column(name = "text")
     private String text;
 
+    public Tag(String text){
+        this.text = text;
+    }
 
 }

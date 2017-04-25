@@ -1,7 +1,10 @@
 package com.itransition.lyubin.service.impl;
 
 
+import com.itransition.lyubin.dto.TagDTO;
+import com.itransition.lyubin.model.ImagesTags;
 import com.itransition.lyubin.model.Tag;
+import com.itransition.lyubin.repository.ImageRepository;
 import com.itransition.lyubin.repository.ImagesTagsRepository;
 import com.itransition.lyubin.repository.TagRepository;
 import com.itransition.lyubin.service.TagService;
@@ -17,11 +20,14 @@ public class TagServiceImpl implements TagService {
 
     private TagRepository tagRepository;
     private ImagesTagsRepository imagesTagsRepository;
+    private ImageRepository imageRepository;
 
     @Autowired
-    public TagServiceImpl(TagRepository tagRepository, ImagesTagsRepository imagesTagsRepository){
+    public TagServiceImpl(TagRepository tagRepository, ImagesTagsRepository imagesTagsRepository,
+                          ImageRepository imageRepository){
         this.tagRepository = tagRepository;
         this.imagesTagsRepository = imagesTagsRepository;
+        this.imageRepository = imageRepository;
     }
 
     @Override
@@ -40,8 +46,20 @@ public class TagServiceImpl implements TagService {
     }
 
     @Override
-    public void save(Tag tag) {
-        this.tagRepository.save(tag);
+    public void save(TagDTO tagDTO) {
+        Tag tag = tagDTO.toTag();
+        tag = this.tagRepository.save(tag);
+        ImagesTags imagesTags = tagDTO.getVoidImagesTags();
+        imagesTags.setImage(this.imageRepository.findOne(tagDTO.getIdImage()));
+        imagesTags.setTag(tag);
+        this.imagesTagsRepository.save(imagesTags);
+    }
+
+    @Override
+    public void saveAll(List<TagDTO> tagsDTO) {
+        for(int i = 0; i < tagsDTO.size(); i++ ){
+            this.save(tagsDTO.get(i));
+        }
     }
 
     @Override
