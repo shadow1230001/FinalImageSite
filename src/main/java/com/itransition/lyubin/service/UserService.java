@@ -3,11 +3,15 @@ package com.itransition.lyubin.service;
 
 import com.itransition.lyubin.dto.UserDTO;
 import com.itransition.lyubin.model.User;
+import org.springframework.security.core.userdetails.UserDetailsService;
 
-public interface UserService {
+import java.util.Optional;
+
+public interface UserService extends UserDetailsService {
     Iterable<User> findAll();
     User findById(Integer id);
-    void save(User user);
+    Optional<User> findUser(Integer id);
+    User save(User user);
     void delete(Integer id);
-    void createUser(UserDTO userDTO);
+    User createUser(UserDTO userDTO);
 }

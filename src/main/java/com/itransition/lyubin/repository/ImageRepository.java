@@ -13,8 +13,13 @@ public interface ImageRepository extends JpaRepository<Image, Integer> {
 
     List<Image> findByProfile(User user);
 
-    List<Image> findAllByProfileId(Integer id);
+    @Query("SELECT i FROM Image as i WHERE i.profile.id = :id")
+    List<Image> findAllByProfileId(@Param("id") Integer id);
 
     @Query("SELECT i FROM Image as i WHERE i.position = 1 AND i.profile.id = :id")
     Image findByIdProfileInPosition1(@Param("id") Integer id);
+
+    @Query("SELECT max(i.position) FROM Image as i")
+    Integer findImageWhereMaxPosition();
+
 }

@@ -1,5 +1,6 @@
 package com.itransition.lyubin.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.social.connect.ConnectionRepository;
 import org.springframework.social.twitter.api.CursoredList;
 import org.springframework.social.twitter.api.Twitter;
@@ -12,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import javax.inject.Inject;
 
 @Controller
-@RequestMapping("/")
+@RequestMapping("/twitter")
 public class TwitterController {
     private Twitter twitter;
 
