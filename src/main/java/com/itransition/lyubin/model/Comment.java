@@ -28,6 +28,9 @@ public class Comment {
     @JoinColumn(name = "id_image")
     private Image image;
 
+    @Column(name = "title")
+    private String title;
+
     @Column(name = "position")
     private Integer position;
 

@@ -14,11 +14,14 @@ public class CommentDTO {
 
     private Integer imageId;
 
+    private String title;
+
     private Integer position;
 
     private String text;
 
     public CommentDTO(@JsonProperty("imageId") Integer imageId,
+                      @JsonProperty("title") String title,
                       @JsonProperty("position") Integer position,
                       @JsonProperty("text") String text) {
         this.imageId = imageId;
@@ -28,6 +31,7 @@ public class CommentDTO {
 
     public Comment toCommentWithoutImage() {
         Comment comment = new Comment();
+        comment.setTitle(this.title);
         comment.setPosition(this.position);
         comment.setText(text);
         return comment;
