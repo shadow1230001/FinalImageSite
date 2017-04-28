@@ -25,7 +25,7 @@ public final class JwtTokenHandler {
         this.userService = userService;
     }
 
-    Optional<UserDetails> parseUserFromToken(String token) {
+    public Optional<UserDetails> parseUserFromToken(String token) {
         String username = Jwts.parser()
                 .setSigningKey(secret)
                 .parseClaimsJws(token)

@@ -24,7 +24,7 @@ public class TagServiceImpl implements TagService {
 
     @Autowired
     public TagServiceImpl(TagRepository tagRepository, ImagesTagsRepository imagesTagsRepository,
-                          ImageRepository imageRepository) {
+                          ImageRepository imageRepository){
         this.tagRepository = tagRepository;
         this.imagesTagsRepository = imagesTagsRepository;
         this.imageRepository = imageRepository;
@@ -49,7 +49,7 @@ public class TagServiceImpl implements TagService {
     public void save(TagDTO tagDTO) {
         Tag tag = tagDTO.toTag();
         tag = this.tagRepository.save(tag);
-        ImagesTags imagesTags = tagDTO.getVoidImagesTags();
+        ImagesTags imagesTags = tagDTO.getEmptyImagesTags();
         imagesTags.setImage(this.imageRepository.findOne(tagDTO.getIdImage()));
         imagesTags.setTag(tag);
         this.imagesTagsRepository.save(imagesTags);
@@ -57,7 +57,7 @@ public class TagServiceImpl implements TagService {
 
     @Override
     public void saveAll(List<TagDTO> tagsDTO) {
-        for (int i = 0; i < tagsDTO.size(); i++) {
+        for(int i = 0; i < tagsDTO.size(); i++ ){
             this.save(tagsDTO.get(i));
         }
     }

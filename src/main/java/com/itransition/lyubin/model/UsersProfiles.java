@@ -32,8 +32,9 @@ public class UsersProfiles {
     @Column(name = "rating")
     private Integer rating;
 
-    public UsersProfiles(User user, Profile profile) {
+    public UsersProfiles(User user, Profile profile, Integer rating) {
         this.user = user;
         this.profile = profile;
+        this.rating = rating;
     }
 }

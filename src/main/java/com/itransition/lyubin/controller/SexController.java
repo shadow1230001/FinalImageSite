@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin
 @RestController
 @RequestMapping(value = "/sex")
 public class SexController {
@@ -16,7 +17,7 @@ public class SexController {
     @Autowired
     private SexService sexService;
 
-    @GetMapping(value = "")
+    @GetMapping(value = "getAll")
     public ResponseEntity<?> findAll() {
         return ResponseEntity.ok(sexService.findAll());
     }

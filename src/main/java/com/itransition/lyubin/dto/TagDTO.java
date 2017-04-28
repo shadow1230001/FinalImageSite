@@ -27,7 +27,7 @@ public class TagDTO {
         return new Tag(this.text);
     }
 
-    public ImagesTags getVoidImagesTags() {
+    public ImagesTags getEmptyImagesTags() {
         ImagesTags imagesTags = new ImagesTags();
         return imagesTags;
     }
