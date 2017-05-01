@@ -13,6 +13,7 @@ public class SexDTO {
     private String name;
 
     public SexDTO(String name) {
+
         this.name = name;
     }
 }

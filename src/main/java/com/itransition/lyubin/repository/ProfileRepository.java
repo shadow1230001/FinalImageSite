@@ -2,6 +2,8 @@ package com.itransition.lyubin.repository;
 
 
 import com.itransition.lyubin.model.Profile;
+import com.itransition.lyubin.model.Sex;
+import com.itransition.lyubin.model.TypeOfPhotography;
 import com.itransition.lyubin.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -22,5 +24,12 @@ public interface ProfileRepository extends JpaRepository<Profile, Integer> {
     @Modifying
     @Transactional
     @Query("update Profile p set p.rating = ?1, p.colLike = ?2 where p.id = ?3")
-    int  updateRating(Double rating, Integer colLike, Integer idProfile);
+    void updateRating(Double rating, Integer colLike, Integer idProfile);
+
+    @Modifying
+    @Transactional
+    @Query("update Profile p set p.sex = ?2, p.typeOfPhotography = ?3, p.name = ?4, " +
+            "p.yearOfBirth = ?5, p.height = ?6, p.weight = ?7 where p.id = ?1")
+    void update(Integer id, Sex sex, TypeOfPhotography typeOfPhotography, String name, Integer yearOfBirth,
+                Integer height, Integer weight);
 }

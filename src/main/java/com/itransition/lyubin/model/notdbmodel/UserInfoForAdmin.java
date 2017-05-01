@@ -1,5 +1,6 @@
 package com.itransition.lyubin.model.notdbmodel;
 
+import com.itransition.lyubin.model.Role;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -7,20 +8,23 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-public class Top {
+public class UserInfoForAdmin {
 
     private Integer id;
 
     private String name;
 
+    private Integer colLike;
+
     private Double rating;
 
-    private String url;
+    private Role role;
 
-    public Top(Integer id, String name, Double rating, String url) {
+    public UserInfoForAdmin(Integer id, String name, Integer colLike, Double rating, Role role) {
         this.id = id;
         this.name = name;
+        this.colLike = colLike;
         this.rating = rating;
-        this.url = url;
+        this.role = role;
     }
 }

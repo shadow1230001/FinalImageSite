@@ -2,7 +2,6 @@ package com.itransition.lyubin.dto;
 
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.itransition.lyubin.model.ImagesTags;
 import com.itransition.lyubin.model.Tag;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -24,11 +23,9 @@ public class TagDTO {
     }
 
     public Tag toTag() {
+
         return new Tag(this.text);
     }
 
-    public ImagesTags getEmptyImagesTags() {
-        ImagesTags imagesTags = new ImagesTags();
-        return imagesTags;
-    }
+
 }

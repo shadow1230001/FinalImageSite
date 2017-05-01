@@ -1,6 +1,7 @@
 package com.itransition.lyubin.service;
 
 
+import com.itransition.lyubin.dto.ArrayImagesDTO;
 import com.itransition.lyubin.dto.ImageDTO;
 import com.itransition.lyubin.model.Image;
 
@@ -16,4 +17,6 @@ public interface ImageService {
     Integer saveNext(ImageDTO imageDTO);
 
     void delete(Integer id);
+
+    void saveAll(ArrayImagesDTO arrayImagesDTO);
 }

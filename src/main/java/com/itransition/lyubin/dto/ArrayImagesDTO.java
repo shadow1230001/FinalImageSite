@@ -1,7 +1,7 @@
 package com.itransition.lyubin.dto;
 
-
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.itransition.lyubin.model.Image;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -13,12 +13,12 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @ToString
-public class ArrayTagsDTO {
-    private List<TagDTO> tags;
+public class ArrayImagesDTO {
 
-    public ArrayTagsDTO(@JsonProperty("tags") List<TagDTO> tags) {
+    private List<Image> images;
 
-        this.tags = tags;
+    public ArrayImagesDTO(@JsonProperty("images") List<Image> images){
+        this.images = images;
     }
 
 }

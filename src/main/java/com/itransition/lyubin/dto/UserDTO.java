@@ -26,6 +26,7 @@ public final class UserDTO {
 
 
     public Optional<String> getLogin() {
+
         return Optional.ofNullable(login);
     }
 
@@ -45,11 +46,13 @@ public final class UserDTO {
     }
 
     public Collection<? extends GrantedAuthority> getAuthorities() {
+
         return Collections.singleton(() -> ROLE_USER);
     }
 
     @Override
     public String toString() {
+
         return this.login + " " + this.password;
     }
 }

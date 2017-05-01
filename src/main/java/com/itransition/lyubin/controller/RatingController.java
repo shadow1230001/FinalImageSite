@@ -8,6 +8,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
+
 @CrossOrigin
 @RestController
 @RequestMapping(value = "rating")
@@ -24,9 +26,9 @@ public class RatingController {
 
     @PostMapping(value = "add")
     public ResponseEntity<?> addLike(@RequestBody AddRatingInfoDTO addRatingInfoDTO,
-                                     @RequestHeader("jwt") String jwt){
-        UserDetails userDetails = this.jwtTokenHandler.parseUserFromToken(jwt).get();
-        this.ratingService.addRating(addRatingInfoDTO, userDetails);
+                                     @RequestHeader("jwt") String jwt) {
+        Optional<UserDetails> userDetailsOptional = this.jwtTokenHandler.parseUserFromToken(jwt);
+        userDetailsOptional.ifPresent(userDetails -> this.ratingService.addRating(addRatingInfoDTO, userDetails));
         return ResponseEntity.ok("ok");
     }
 }

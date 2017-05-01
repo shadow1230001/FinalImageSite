@@ -3,6 +3,7 @@ package com.itransition.lyubin.service;
 
 import com.itransition.lyubin.dto.UserDTO;
 import com.itransition.lyubin.model.User;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
 import java.util.Optional;
@@ -19,4 +20,6 @@ public interface UserService extends UserDetailsService {
     void delete(Integer id);
 
     User createUser(UserDTO userDTO);
+
+    boolean isAdmin(UserDetails userDetails);
 }

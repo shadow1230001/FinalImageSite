@@ -38,11 +38,13 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     public List<Comment> findAllByImageId(Integer id) {
+
         return this.commentRepository.findAllByImageId(id);
     }
 
     @Override
     public List<Comment> findAll() {
+
         return this.commentRepository.findAll();
     }
 
@@ -71,6 +73,7 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     public void delete(Integer id) {
+
         this.commentRepository.delete(id);
     }
 }

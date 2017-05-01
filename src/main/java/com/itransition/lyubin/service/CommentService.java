@@ -9,8 +9,12 @@ import java.util.List;
 
 public interface CommentService {
     List<Comment> findAllByImageId(Integer id);
+
     List<Comment> findAll();
+
     void save(CommentDTO commentDTO);
+
     void saveNext(CommentDTO commentDTO, UserDetails userDetails);
+
     void delete(Integer id);
 }

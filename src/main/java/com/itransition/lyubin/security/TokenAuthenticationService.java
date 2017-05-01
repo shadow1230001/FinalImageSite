@@ -17,6 +17,7 @@ public class TokenAuthenticationService {
 
     @Autowired
     public TokenAuthenticationService(JwtTokenHandler jwtTokenHandler) {
+
         this.jwtTokenHandler = jwtTokenHandler;
     }
 

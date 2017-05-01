@@ -7,11 +7,12 @@ import com.itransition.lyubin.security.JwtTokenHandler;
 import com.itransition.lyubin.service.AuthService;
 import com.itransition.lyubin.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.Optional;
 
 @CrossOrigin
 @RestController
@@ -30,25 +31,15 @@ public class UserController {
         this.jwtTokenHandler = jwtTokenHandler;
     }
 
-    @GetMapping(value = "getAll")
-    public ResponseEntity<?> getAll() {
-        return ResponseEntity.ok(this.userService.findAll());
-    }
-
-    @GetMapping(value = "get/{id}")
-    public ResponseEntity<?> getUserById(@PathVariable(value = "id") Integer id) {
-        return ResponseEntity.ok(this.userService.findById(id));
-    }
-
     @PostMapping(value = "singup")
-    public ResponseEntity singup(@RequestBody PersonContext personContext) {
+    public ResponseEntity<?> singup(@RequestBody PersonContext personContext) {
         String res = "";
         if (this.authService.singup(personContext.getUserDTO(),
                 personContext.getProfileDTO(), personContext.getImageDTO())) {
             res = this.jwtTokenHandler.createTokenForUser(personContext.getUserDTO().toUser());
         }
 
-        return new ResponseEntity(res, HttpStatus.OK);
+        return ResponseEntity.ok(res);
     }
 
     @PostMapping(value = "login")
@@ -57,8 +48,17 @@ public class UserController {
         if (this.authService.login(userDTO)) {
             res = this.jwtTokenHandler.createTokenForUser(userDTO.toUser());
         }
-        return new ResponseEntity(res, HttpStatus.OK);
+        return ResponseEntity.ok(res);
     }
 
+    @GetMapping(value = "isadmin")
+    public ResponseEntity<?> isadmin(@RequestHeader(value = "jwt") String jwt) {
+        UserDetails userDetails = null;
+        Optional<UserDetails> userDetailsOptional = this.jwtTokenHandler.parseUserFromToken(jwt);
+        if(userDetailsOptional.isPresent()){
+            userDetails = userDetailsOptional.get();
+        }
+        return ResponseEntity.ok(this.userService.isAdmin(userDetails));
+    }
 
 }

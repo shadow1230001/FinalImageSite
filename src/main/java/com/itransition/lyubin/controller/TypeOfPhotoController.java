@@ -14,11 +14,16 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(value = "/typeofphoto")
 public class TypeOfPhotoController {
 
-    @Autowired
     private TypeOfPhotoService typeOfPhotoService;
+
+    @Autowired
+    public TypeOfPhotoController(TypeOfPhotoService typeOfPhotoService) {
+        this.typeOfPhotoService = typeOfPhotoService;
+    }
 
     @GetMapping(value = "getAll")
     public ResponseEntity<?> findAll() {
+
         return ResponseEntity.ok(typeOfPhotoService.findAll());
     }
 

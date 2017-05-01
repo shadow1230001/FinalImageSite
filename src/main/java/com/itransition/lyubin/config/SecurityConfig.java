@@ -18,20 +18,20 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-
 @Configuration
 @EnableWebSecurity
 @Order(1)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Autowired
     private UserService userService;
 
-    @Autowired
     private TokenAuthenticationService tokenAuthenticationService;
 
-    public SecurityConfig() {
+    @Autowired
+    public SecurityConfig(UserService userService, TokenAuthenticationService tokenAuthenticationService) {
         super(true);
+        this.userService = userService;
+        this.tokenAuthenticationService = tokenAuthenticationService;
     }
 
     @Override

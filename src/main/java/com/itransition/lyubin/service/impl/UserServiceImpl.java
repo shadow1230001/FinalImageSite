@@ -66,6 +66,16 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public boolean isAdmin(UserDetails userDetails) {
+        if (userDetails != null) {
+            User user = this.userRepository.findByLogin(userDetails.getUsername());
+            UsersRoles usersRoles = this.usersRolesRepository.getUsersRolesByUser(user);
+            if (usersRoles.getRole().getId() == 2) return true;
+        }
+        return false;
+    }
+
+    @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         final Optional<User> user = Optional.ofNullable(userRepository.findByLogin(username));
         final AccountStatusUserDetailsChecker detailsChecker = new AccountStatusUserDetailsChecker();

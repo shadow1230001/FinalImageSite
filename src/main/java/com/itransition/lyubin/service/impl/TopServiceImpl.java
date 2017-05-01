@@ -24,22 +24,24 @@ public class TopServiceImpl implements TopService {
     private ImageRepository imageRepository;
 
     @Autowired
-    public TopServiceImpl(ProfileRepository profileRepository, ImageRepository imageRepository){
+    public TopServiceImpl(ProfileRepository profileRepository, ImageRepository imageRepository) {
         this.profileRepository = profileRepository;
         this.imageRepository = imageRepository;
     }
 
     @Override
-    public ArrayList<Top> findTop(Integer col){
+    public ArrayList<Top> findTop(Integer col) {
         ArrayList<Top> list = new ArrayList<>();
         List<Profile> sortProfiles = this.profileRepository.findAll(new Sort("rating"));
-        for(int i = 0; i < sortProfiles.size(); i++){
+        for (int i = 0; i < sortProfiles.size(); i++) {
             Image image = this.imageRepository.findByIdProfileInPosition1(sortProfiles.get(i).getId());
             Top top = new Top(sortProfiles.get(i).getId(), sortProfiles.get(i).getName(),
                     sortProfiles.get(i).getRating(), "");
-            if(image != null){top.setUrl(image.getUrl());}
+            if (image != null) {
+                top.setUrl(image.getUrl());
+            }
             list.add(top);
-            if(i>=col) break;
+            if (i >= col) break;
         }
         return list;
     }

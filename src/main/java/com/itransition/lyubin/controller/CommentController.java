@@ -9,6 +9,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
+
 @CrossOrigin
 @RestController
 @RequestMapping(value = "/comments")
@@ -41,9 +43,9 @@ public class CommentController {
 
     @PostMapping(value = "/savenaxt")
     public ResponseEntity<?> saveNext(@RequestBody CommentDTO commentDTO,
-                                      @RequestHeader(value="jwt") String token) {
-        UserDetails userDetails = this.jwtTokenHandler.parseUserFromToken(token).get();
-        this.commentService.saveNext(commentDTO, userDetails);
+                                      @RequestHeader(value = "jwt") String token) {
+        Optional<UserDetails> userDetailsOptional = this.jwtTokenHandler.parseUserFromToken(token);
+        userDetailsOptional.ifPresent(userDetails -> this.commentService.saveNext(commentDTO, userDetails));
         return ResponseEntity.ok("ok");
     }
 

@@ -22,7 +22,7 @@ public class RatingServiceImpl implements RatingService {
     @Autowired
     public RatingServiceImpl(UserProfileRepository userProfileRepository,
                              ProfileRepository profileRepository,
-                             UserRepository userRepository){
+                             UserRepository userRepository) {
         this.userProfileRepository = userProfileRepository;
         this.profileRepository = profileRepository;
         this.userRepository = userRepository;
@@ -31,9 +31,9 @@ public class RatingServiceImpl implements RatingService {
     @Override
     public void addRating(AddRatingInfoDTO addRatingInfoDTO, UserDetails userDetails) {
         User user = this.userRepository.findByLogin(userDetails.getUsername());
-        Profile profile = this.profileRepository.findByUser(user);
+        Profile profile = this.profileRepository.findById(addRatingInfoDTO.getProfileId());
         UsersProfiles usersProfiles = this.userProfileRepository.findFirstByUserAndProfile(user, profile);
-        if(usersProfiles == null){
+        if (usersProfiles == null) {
             this.saveNewRatingRow(user, profile, addRatingInfoDTO);
         } else {
             this.saveRatingRow(usersProfiles, profile, addRatingInfoDTO);
@@ -46,8 +46,8 @@ public class RatingServiceImpl implements RatingService {
         this.userProfileRepository.save(usersProfiles);
         double rating = profile.getRating();
         int colLike = profile.getColLike();
-        rating = (rating*colLike + addRatingInfoDTO.getRating()) / (colLike + 1);
-        this.profileRepository.updateRating(rating, colLike, addRatingInfoDTO.getProfileId());
+        rating = (rating * colLike + addRatingInfoDTO.getRating()) / (colLike + 1);
+        this.profileRepository.updateRating(rating, colLike + 1, addRatingInfoDTO.getProfileId());
     }
 
     private void saveRatingRow(UsersProfiles usersProfiles, Profile profile, AddRatingInfoDTO addRatingInfoDTO) {
@@ -55,7 +55,7 @@ public class RatingServiceImpl implements RatingService {
         this.userProfileRepository.updateRatingById(usersProfiles.getId(), addRatingInfoDTO.getRating());
         double rating = profile.getRating();
         int colLike = profile.getColLike();
-        rating = (rating*colLike - ratingOld + addRatingInfoDTO.getRating()) / colLike;
+        rating = (rating * colLike - ratingOld + addRatingInfoDTO.getRating()) / colLike;
         this.profileRepository.updateRating(rating, colLike, addRatingInfoDTO.getProfileId());
     }
 }

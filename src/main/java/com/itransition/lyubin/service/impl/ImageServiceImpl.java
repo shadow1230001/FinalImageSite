@@ -1,10 +1,12 @@
 package com.itransition.lyubin.service.impl;
 
 
+import com.itransition.lyubin.dto.ArrayImagesDTO;
 import com.itransition.lyubin.dto.ImageDTO;
 import com.itransition.lyubin.model.Image;
 import com.itransition.lyubin.repository.ImageRepository;
 import com.itransition.lyubin.repository.ProfileRepository;
+import com.itransition.lyubin.repository.UserRepository;
 import com.itransition.lyubin.service.ImageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,10 +22,15 @@ public class ImageServiceImpl implements ImageService {
 
     private ProfileRepository profileRepository;
 
+    private UserRepository userRepository;
+
     @Autowired
-    public ImageServiceImpl(ImageRepository imageRepository, ProfileRepository profileRepository) {
+    public ImageServiceImpl(ImageRepository imageRepository,
+                            ProfileRepository profileRepository,
+                            UserRepository userRepository){
         this.imageRepository = imageRepository;
         this.profileRepository = profileRepository;
+        this.userRepository = userRepository;
     }
 
     @Override
@@ -45,10 +52,10 @@ public class ImageServiceImpl implements ImageService {
     }
 
     @Override
-    public Integer saveNext(ImageDTO imageDTO) {
+    public Integer saveNext(ImageDTO imageDTO){
         Image image = imageDTO.toImageWithUrl();
         image.setProfile(this.profileRepository.findOne(imageDTO.getIdProfile()));
-        Integer nextPosition = this.imageRepository.findImageWhereMaxPosition() + 1;
+        Integer nextPosition = this.imageRepository.findImageWhereMaxPosition(imageDTO.getIdProfile()) + 1;
         image.setPosition(nextPosition);
         image = this.imageRepository.save(image);
         return image.getId();
@@ -57,5 +64,13 @@ public class ImageServiceImpl implements ImageService {
     @Override
     public void delete(Integer id) {
         this.imageRepository.delete(id);
+    }
+
+    @Override
+    public void saveAll(ArrayImagesDTO arrayImagesDTO) {
+        List<Image> list = arrayImagesDTO.getImages();
+        for (Image image: list) {
+            this.imageRepository.updatePositionOfImage(image.getId(), image.getPosition());
+        }
     }
 }
