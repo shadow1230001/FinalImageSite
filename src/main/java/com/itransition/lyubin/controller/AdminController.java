@@ -1,5 +1,6 @@
 package com.itransition.lyubin.controller;
 
+import com.itransition.lyubin.dto.ArrayUserInfoForAdminDTO;
 import com.itransition.lyubin.security.JwtTokenHandler;
 import com.itransition.lyubin.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,13 +26,21 @@ public class AdminController {
     }
 
     @GetMapping(value = "getAll")
-    public ResponseEntity<?> getAll(@RequestHeader("jwt") String token){
+    public ResponseEntity<?> getAll(@RequestHeader("jwt") String token) {
         Optional<UserDetails> userDetailsOptional = this.jwtTokenHandler.parseUserFromToken(token);
-        if(userDetailsOptional.isPresent()){
+        if (userDetailsOptional.isPresent()) {
             return ResponseEntity.ok(this.adminService.getAdminInfoWithCheckAdmin(userDetailsOptional.get()));
         }
         return ResponseEntity.ok(new ArrayList<>());
     }
 
+    @PostMapping(value = "saveRoles")
+    public ResponseEntity<?> saveRoles(@RequestHeader("jwt") String token,
+                                       @RequestBody ArrayUserInfoForAdminDTO array) {
+        Optional<UserDetails> userDetailsOptional = this.jwtTokenHandler.parseUserFromToken(token);
+        userDetailsOptional.ifPresent(userDetails ->
+                this.adminService.updateAdminInfoWithCheckAdmin(array.getUserInfoForAdminArrayList(), userDetails));
+        return ResponseEntity.ok("ok");
+    }
 
 }

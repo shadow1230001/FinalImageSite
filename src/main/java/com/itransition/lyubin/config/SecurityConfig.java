@@ -37,12 +37,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
-        http.csrf().disable();
+        http.csrf().disable(); //vkluchaem zashitu ot csrf atak
 
         //h2 database console
         http.headers().frameOptions().disable();
 
-        http.exceptionHandling()
+        http.exceptionHandling() //ukazivaem pravila zaprosov
                 .and().anonymous()
                 .and().servletApi()
                 .and().headers().cacheControl();
