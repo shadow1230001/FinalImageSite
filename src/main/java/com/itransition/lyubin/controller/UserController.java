@@ -53,12 +53,15 @@ public class UserController {
 
     @GetMapping(value = "isadmin")
     public ResponseEntity<?> isadmin(@RequestHeader(value = "jwt") String jwt) {
-        UserDetails userDetails = null;
-        Optional<UserDetails> userDetailsOptional = this.jwtTokenHandler.parseUserFromToken(jwt);
-        if(userDetailsOptional.isPresent()){
-            userDetails = userDetailsOptional.get();
+        if(jwt != null && jwt != "") {
+            UserDetails userDetails = null;
+            Optional<UserDetails> userDetailsOptional = this.jwtTokenHandler.parseUserFromToken(jwt);
+            if (userDetailsOptional.isPresent()) {
+                userDetails = userDetailsOptional.get();
+                return ResponseEntity.ok(this.userService.isAdmin(userDetails));
+            }
         }
-        return ResponseEntity.ok(this.userService.isAdmin(userDetails));
+        return ResponseEntity.ok(false);
     }
 
 }
