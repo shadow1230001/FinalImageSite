@@ -49,7 +49,7 @@ public class AdminServiceImpl implements AdminService {
     public List<UserInfoForAdmin> getAdminInfoWithCheckAdmin(UserDetails userDetails) {
         User user = this.userRepository.findByLogin(userDetails.getUsername());
         Role role = this.usersRolesRepository.getUsersRolesByUser(user).getRole();
-        if(role.getRolename().equals("ROLE_ADMIN")){
+        if (role.getRolename().equals("ROLE_ADMIN")) {
             return this.getAdminInfo();
         }
         return new ArrayList<>();
@@ -66,7 +66,7 @@ public class AdminServiceImpl implements AdminService {
     public void updateAdminInfoWithCheckAdmin(List<UserInfoForAdmin> list, UserDetails userDetails) {
         User user = this.userRepository.findByLogin(userDetails.getUsername());
         Role role = this.usersRolesRepository.getUsersRolesByUser(user).getRole();
-        if(role.getRolename().equals("ROLE_ADMIN")){
+        if (role.getRolename().equals("ROLE_ADMIN")) {
             this.updateAdminInfo(list);
         }
     }

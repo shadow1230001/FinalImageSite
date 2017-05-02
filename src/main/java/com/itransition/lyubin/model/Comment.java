@@ -16,6 +16,7 @@ import javax.persistence.*;
 @Setter
 @NoArgsConstructor
 @ToString
+
 public class Comment {
 
     @Id

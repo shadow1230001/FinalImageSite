@@ -29,7 +29,7 @@ public class CommentServiceImpl implements CommentService {
 
     @Autowired
     public CommentServiceImpl(CommentRepository commentRepository, ImageRepository imageRepository,
-                              UserRepository userRepository, ProfileRepository profileRepository){
+                              UserRepository userRepository, ProfileRepository profileRepository) {
         this.commentRepository = commentRepository;
         this.imageRepository = imageRepository;
         this.userRepository = userRepository;
@@ -38,8 +38,9 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     public List<Comment> findAllByImageId(Integer id) {
+        List<Comment> commentList = this.commentRepository.findAllByImageId(id);
 
-        return this.commentRepository.findAllByImageId(id);
+        return commentList;
     }
 
     @Override
@@ -52,20 +53,21 @@ public class CommentServiceImpl implements CommentService {
     public void save(CommentDTO commentDTO) {
         Comment comment = commentDTO.toCommentWithoutImage();
         comment.setImage(this.imageRepository.findOne(commentDTO.getImageId()));
+
         this.commentRepository.save(comment);
     }
 
     @Override
     public void saveNext(CommentDTO commentDTO, UserDetails userDetails) {
         Comment comment = commentDTO.toCommentWithoutImage();
-        if(userDetails != null) {
+        if (userDetails != null) {
             Profile profile = this.profileRepository
                     .findByUser(this.userRepository.findByLogin(userDetails.getUsername()));
             comment.setTitle(profile.getName());
         } else comment.setTitle("anonimus");
         comment.setImage(this.imageRepository.findOne(commentDTO.getImageId()));
         Integer pizdec = this.commentRepository.findCommentWhereMaxPosition(commentDTO.getImageId());
-        if(pizdec == null) pizdec = 0;
+        if (pizdec == null) pizdec = 0;//lol
         comment.setPosition(pizdec + 1);
 
         this.commentRepository.save(comment);

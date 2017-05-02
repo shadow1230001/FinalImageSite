@@ -58,7 +58,7 @@ public class TagServiceImpl implements TagService {
     @Override
     public void saveAll(List<TagDTO> tagsDTO) {
         int i = 0;
-        for (TagDTO tagDTO: tagsDTO) {
+        for (TagDTO tagDTO : tagsDTO) {
             this.save(tagsDTO.get(i));
             i++;
         }

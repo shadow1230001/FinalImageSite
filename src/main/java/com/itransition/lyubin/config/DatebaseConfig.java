@@ -44,6 +44,7 @@ public class DatebaseConfig {
         dataSource.setUrl(url);
         dataSource.setUsername(username);
         dataSource.setPassword(password);
+
         return dataSource;
     }
 
@@ -59,6 +60,7 @@ public class DatebaseConfig {
                 new LocalContainerEntityManagerFactoryBean();
 
         entityManagerFactory.setDataSource(dataSource);
+
 
         // Classpath scanning of @Component, @Service, etc annotated class
         entityManagerFactory.setPackagesToScan(
